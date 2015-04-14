@@ -1,16 +1,16 @@
 	/**
-	 *	PadWeb Library
+	 *	Album Plus
 	 *	公共模块
 	 *	@time 2014-2-13
 	 */
 
-	var PAD = PAD || {};
+	var Album = Album || {};
 	//注册模块
-	PAD.register = function(str) {
+	Album.register = function(str) {
 		var arr = str.split("."),
-			o = PAD,
+			o = Album,
 			i;
-		for (i = (arr[0] == "PAD") ? 1 : 0; i < arr.length; i++) {
+		for (i = (arr[0] == "Album") ? 1 : 0; i < arr.length; i++) {
 			o[arr[i]] = o[arr[i]] || {};
 			o = o[arr[i]];
 		}
@@ -20,10 +20,10 @@
 	 *	常用工具方法，CSS3特性嗅探
 	 *	@time 2014-2-13
 	 */
-	PAD.register("Util");
-	PAD.Util.array = (function() {
+	Album.register("Util");
+	Album.Util.array = (function() {
 		//依赖
-		var ulang = PAD.Util.lang,
+		var ulang = Album.Util.lang,
 			//私有属性
 			toString = Object.prototype.toString,
 			arrayStr = "[Object Array]";
@@ -52,7 +52,7 @@
 	 *  @tips   wait to overwrite
 	 */
 
-	PAD.Util.ajax = (function() {
+	Album.Util.ajax = (function() {
 		var getData = function(url, callback) {
 			J.get({
 				url: url,
@@ -74,7 +74,7 @@
 	 * 解决iscroll下跳转问题
 	 * @author hwang
 	 */
-	PAD.Util.fireJump = function(href, target) {
+	Album.Util.fireJump = function(href, target) {
 		if (!href) {
 			return;
 		}
@@ -89,15 +89,15 @@
 	 * 替换图片域名
 	 *
 	 */
-	PAD.Util.changeImageDomain = function(imgsrc, imgkey) {
+	Album.Util.changeImageDomain = function(imgsrc, imgkey) {
 		if (imgsrc.indexOf(imgkey) > 0) {
-			return imgsrc.replace("http://", "http://" + PAD.Util.getImageDomain(imgsrc) + ".");
+			return imgsrc.replace("http://", "http://" + Album.Util.getImageDomain(imgsrc) + ".");
 		} else {
 			return imgsrc;
 		}
 	}
 
-	PAD.Util.getImageDomain = function(url) {
+	Album.Util.getImageDomain = function(url) {
 		var a = url.split("/");
 		var b = c = d = "";
 		for (b in a) {
@@ -108,7 +108,7 @@
 		return c;
 	}
 
-	PAD.Util.lang = (function() {
+	Album.Util.lang = (function() {
 		var Constr;
 		//公有 API --构造函数
 		Constr = function(o) {
@@ -116,7 +116,7 @@
 		}
 		//公有 API --原型
 		Constr.prototype = {
-			constructor: PAD.Util.lang,
+			constructor: Album.Util.lang,
 			version: "2.0",
 			toArray: function(obj) {
 				return obj;
@@ -125,11 +125,11 @@
 	})();
 
 	//Use Constr Func
-	//var arr = new PAD.Util.lang(obj);
+	//var arr = new Album.Util.lang(obj);
 
 	//import window into module
 
-	PAD.register("Comm");
+	Album.register("Comm");
 	/**
 	 * 滑动类
 	 * @param  {[type]} app    [应用程序]
@@ -138,11 +138,11 @@
 	 * @time   2014-2-21
 	 */
 
-	PAD.Comm.swipe = (function(app, global) {
+	Album.Comm.swipe = (function(app, global) {
 		//引用全局对象
 		//引用应用程序
 
-	}(PAD, this));
+	}(Album, this));
 
 
 	/**
@@ -152,7 +152,7 @@
 	 * @time    2014-3-3
 	 */
 
-	PAD.Comm.recommends = (function() {
+	Album.Comm.recommends = (function() {
 		var args, count = 0,
 			showNum = 3;
 		var init = function() {
@@ -161,7 +161,7 @@
 			getData(url, args);
 		};
 		var getData = function(url) {
-			PAD.Util.ajax.execute(url, resolveArgs);
+			Album.Util.ajax.execute(url, resolveArgs);
 		}
 		var buildModul = function(comm_id, comm_data, comm_from, comm_showNum) {
 			var posNum = comm_data.length;
@@ -185,7 +185,7 @@
 			count == 1 && warp.push('<div class="liWarp">');
 			warp.push('<li>');
 			warp.push('<a href="' + content.LINK + '?from=' + from + '&position=' + (index + 1) + content.SOJ + '">');
-			warp.push('<img src="' + PAD.Util.changeImageDomain(content.IMAGESRC, ".ajkimg.") + '" width="150" height="115" alt="' + content.TITLE + '"/>');
+			warp.push('<img src="' + Album.Util.changeImageDomain(content.IMAGESRC, ".ajkimg.") + '" width="150" height="115" alt="' + content.TITLE + '"/>');
 			warp.push('</a>');
 			warp.push('<a href="' + content.LINK + '?from=' + from + '&position=' + (index + 1) + content.SOJ + '">' + content.TITLE + '...</a>');
 			warp.push('<div class="v_c_desc">' + content.ROOMNUM + '室' + content.HALLNUM + '厅' + '</div>');
@@ -292,7 +292,7 @@
 	 * @time    2014-3-9
 	 */
 
-	PAD.Comm.viewBigPic = (function() {
+	Album.Comm.viewBigPic = (function() {
 		var defaultOpts = {
 			target: J.D.body,
 			continuous: false,
